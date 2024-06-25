@@ -1,4 +1,5 @@
 import Todo from "../models/todo.model.js"
+
 export const fetchTodos = async (req, res) => {
   const todos = await Todo.find().sort({createdAt: -1})
   .then(todos => {res.json(todos)})
@@ -16,6 +17,18 @@ export const addTodo =  async (req, res) => {
   await Todo.create(todoToAdd)
   .then( console.log("Todo added successfully"))
   .catch(err => console.log(err))
+}
 
+export const deleteTodo = async (req, res) => {
+  console.log(req.params.id)
+  await Todo.findByIdAndDelete(req.params.id)
+  .then( console.log("Todo deleted successfully"))
+  .catch(err => console.log(err))
+}
 
+export const setCompleted = async (req, res) => {
+  console.log(req.body.id)
+  await Todo.findByIdAndUpdate(req.body.id, {completed: true})
+  .then( ()=>{ res.json({message: "Todo completed successfully"})})
+  .catch(err => console.log(err))
 }

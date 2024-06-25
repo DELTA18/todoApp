@@ -13,8 +13,9 @@ import {
     Button
   } from '@chakra-ui/react'
   import { useToast } from '@chakra-ui/react'
+import axios from "axios";
 
- export default function TransitionExample() {
+ export default function TransitionExample({selectedTodos}) {
     
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
@@ -28,6 +29,20 @@ import {
             isClosable: true,
           }
     )
+    
+    const setCompleted = async () => {
+      
+      selectedTodos.forEach(async (todo) => {      
+        let id = todo._id;  
+        console.log(id)
+        await axios.post('http://localhost:3000/api/todo/setCompleted', {
+          id: id})
+          .then((res) => {
+            onClose();
+            successToast();
+          })
+      });
+    }
   
     return (
       <>
@@ -52,8 +67,7 @@ import {
                 No
               </Button>
               <Button onClick={() => { 
-                onClose();
-                successToast();
+                setCompleted();
               }} colorScheme='green' ml={3}>
                 Yes
               </Button>
