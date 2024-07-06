@@ -25,15 +25,15 @@ const Todo_card = (props) => {
             <Box w={'10%'} display={'flex'} justifyContent={'center'} alignItems={'center'} >
             <Checkbox colorScheme='green' onChange={handleChange}/>
             </Box>
-            <Box w={'80%'}>
+            <Box w={'90%'}>
               <Text px={3}>{props.title} </Text>
               <Text px={3} fontSize='xs' color={'gray.500'} display={'flex'} justifyContent={'end'}>Added at {time} </Text>
             </Box>
-            <MotionBox w={'10%'} minH={50} whileHover={{ backgroundColor: '#ff3f2e' }} transition={{ duration: '1s' }} style={{ transition: 'background-color 0.3s ease' }}  display={'flex'} justifyContent={'center'} alignItems={'center'} >
+            {/* <MotionBox w={'10%'} minH={50} whileHover={{ backgroundColor: '#ff3f2e' }} transition={{ duration: '1s' }} style={{ transition: 'background-color 0.3s ease' }}  display={'flex'} justifyContent={'center'} alignItems={'center'} >
             <span class="material-symbols-outlined">
               delete
             </span>
-            </MotionBox>
+            </MotionBox> */}
         </Flex>
     </Box>
   )

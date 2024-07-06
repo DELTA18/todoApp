@@ -20,7 +20,7 @@ const home = () => {
   return (
     <Box className='container-box' pr={'10'} pl={'10'} display={'flex'} >
       <Box className='left-container' w={'60%'}>
-        <Todo_input /> <Completed_todos_button selectedTodos = {selectedTodos} /> <Delete_todos_button /><br></br>
+        <Todo_input /> <Completed_todos_button selectedTodos = {selectedTodos} /> <Delete_todos_button selectedTodos = {selectedTodos} /><br></br>
 
 
         {todos.map((todo) => (
@@ -30,6 +30,9 @@ const home = () => {
       </Box>
       <Box className='right-container'>
         <Heading size={'lg'}>Completed Todos</Heading>
+        {todos.map((todo) => (
+          todo.completed === true ? <Todo_card key={todo.id} id={todo._id} title={todo.todo} time={todo.createdAt} selectedTodos={selectedTodos} setSelectedTodos={setSelectedTodos} todo={todo} /> : null
+        ))}
       </Box>
     </Box>
   )
